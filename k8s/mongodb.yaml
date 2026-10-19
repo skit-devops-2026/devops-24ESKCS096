@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: revibe-mongo-deployment
+  labels:
+    app: revibe-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: revibe-mongo
+  template:
+    metadata:
+      labels:
+        app: revibe-mongo
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo:6.0
+          ports:
+            - containerPort: 27017
+              name: mongo
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: revibe-mongo-service
+  labels:
+    app: revibe-mongo
+spec:
+  type: ClusterIP
+  selector:
+    app: revibe-mongo
+  ports:
+    - name: mongo
+      port: 27017
+      targetPort: 27017
+      protocol: TCP
