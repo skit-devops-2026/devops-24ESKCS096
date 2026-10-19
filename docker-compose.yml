@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: revibe-web
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - MONGO_URL=mongodb://mongodb:27017/ReVibe
+    depends_on:
+      - mongodb
+    networks:
+      - revibe-network
+
+  mongodb:
+    image: mongo:6.0
+    container_name: revibe-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - revibe-network
+
+networks:
+  revibe-network:
+    driver: bridge
+
+volumes:
+  mongo-data:

@@ -1,0 +1,9 @@
+node_modules
+server/node_modules
+.git
+.github
+.env
+docs
+monitoring
+k8s
+*.log
