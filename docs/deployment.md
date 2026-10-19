@@ -38,3 +38,9 @@ The application includes `render.yaml` Blueprint for zero-friction cloud hosting
 - Build Command: `cd server && npm ci`
 - Start Command: `cd server && npm start`
 - Live Endpoint: `https://revibe-24eskcs096.onrender.com`
+
+---
+
+## 4. Deployment Verification Evidence
+
+![ReVibe Live Deployment Screenshot](deployment.png)
