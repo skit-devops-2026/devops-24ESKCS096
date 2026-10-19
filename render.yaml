@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: revibe-24eskcs096
+    env: node
+    plan: free
+    buildCommand: cd server && npm ci
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8080
